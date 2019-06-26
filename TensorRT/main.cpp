@@ -9,11 +9,12 @@
 int main() 
 {
 	static ClassificationTensorRT CLASSIFICATION_TENSORRT;
-	cv::Mat img = cv::imread("C:/DeepEye/Data/Result/boundingbox_resources/20190409/0009201904090172_F.jpg");
-	std::string model = "C:/DeepEye/Data/DNN/DamageClassificationModel/deploy.prototxt";
-	std::string trained = "C:/DeepEye/Data/DNN/DamageClassificationModel/network.caffemodel";
-	std::string mean = "C:/DeepEye/Data/DNN/DamageClassificationModel/mean.binaryproto";
-	std::string label = "C:/DeepEye/Data/DNN/DamageClassificationModel/labels.txt";
+	// Edit image and caffe model path below
+	cv::Mat img = cv::imread("image.jpg");
+	std::string model = "CaffeModel/deploy.prototxt";
+	std::string trained = "CaffeModel/network.caffemodel";
+	std::string mean = "CaffeModel/mean.binaryproto";
+	std::string label = "CaffeModel/labels.txt";
 	ClassificationTensorRT::classifier_ctx *ctx;
 	int time1, time2;
 	
