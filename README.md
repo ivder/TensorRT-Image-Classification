@@ -20,6 +20,7 @@ std::string trained = "CaffeModel/network.caffemodel";
 std::string mean = "CaffeModel/mean.binaryproto";
 std::string label = "CaffeModel/labels.txt";
 ```
+ - Check Project Properties and make sure all dependencies paths (TensorRT, CUDA, OpenCV) are correct
  - Build the solution on Release mode and run
 
 # Result
