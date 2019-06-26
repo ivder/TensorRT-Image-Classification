@@ -36,10 +36,10 @@ dog : 91.274193%
 
 
 TOP 5 Predictions
-cat : 0.912742%
+dog : 0.912742%
 bird : 0.0856047%
 fish : 0.00106978%
-person : 0.000507325%
+cat : 0.000507325%
 reptile : 7.00301e-05%
 
 Classification Time : 11ms
