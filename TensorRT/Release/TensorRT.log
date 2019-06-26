@@ -1,0 +1,4 @@
+﻿  classification.cpp
+c:\tensorrt-5.1.5.0.windows10.x86_64.cuda-10.0.cudnn7.5\tensorrt-5.1.5.0\include\nvinfer.h(5208): warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+c:\users\super\documents\visual studio 2017\projects\tensorrt\tensorrt\classification.cpp(441): warning C4101: 'ex': unreferenced local variable
+opencv_world346.lib(opencv_world346.dll) : fatal error LNK1112: module machine type 'x64' conflicts with target machine type 'x86'

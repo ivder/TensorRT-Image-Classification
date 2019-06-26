@@ -1,0 +1,20 @@
+﻿  classification.cpp
+c:\tensorrt-5.1.5.0.windows10.x86_64.cuda-10.0.cudnn7.5\tensorrt-5.1.5.0\include\nvinfer.h(5208): warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+c:\users\super\documents\visual studio 2017\projects\tensorrt\tensorrt\classification.cpp(440): warning C4101: 'ex': unreferenced local variable
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\utility(240): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+          and
+          [
+              _Ty2=int
+          ]
+  c:\users\super\documents\visual studio 2017\projects\tensorrt\tensorrt\classification.cpp(160): note: see reference to function template instantiation 'std::pair<float,int>::pair<float,unsigned __int64,0>(std::pair<float,unsigned __int64> &&) noexcept' being compiled
+  c:\users\super\documents\visual studio 2017\projects\tensorrt\tensorrt\classification.cpp(160): note: see reference to function template instantiation 'std::pair<float,int>::pair<float,unsigned __int64,0>(std::pair<float,unsigned __int64> &&) noexcept' being compiled
+  Generating code
+  1 of 1113 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  TensorRT.vcxproj -> C:\Users\super\Documents\Visual Studio 2017\Projects\TensorRT\x64\Release\TensorRT.exe
