@@ -328,13 +328,6 @@ void Classifier::Preprocess(const Mat& host_img,
 		//<< "Input channels are not wrapping the input layer of the network.";
 }
 
-/* By using Go as the HTTP server, we have potentially more CPU threads than
- * available GPUs and more threads can be added on the fly by the Go
- * runtime. Therefore we cannot pin the CPU threads to specific GPUs.  Instead,
- * when a CPU thread is ready for inference it will try to retrieve an
- * execution context from a queue of available GPU contexts and then do a
- * cudaSetDevice() to prepare for execution. Multiple contexts can be allocated
- * per GPU. */
 class ExecContext
 {
 public:
