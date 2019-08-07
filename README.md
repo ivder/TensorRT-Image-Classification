@@ -22,26 +22,27 @@ std::string label = "CaffeModel/labels.txt";
 ```
  - Check Project Properties and make sure all dependencies paths (TensorRT, CUDA, OpenCV) are correct
  - Build the solution on Release mode and run
+ - The first time you running this program, it will take some time to build the CUDA engine, and the engine will be saved as **ClassificationTRT.engine**. The next time you run the program, it will load the created engine in a short time.
 
 # Result
 ```
 Finding CUDA Device
 Parsing Caffe Model
-Building Cuda Engine
+Loading ClassificationTRT.engine
 CUDA NO ERROR
-Initialization Time : 28.576s
+Initialization Time : 3.646s
 Classifying Image
 
 TOP 1 Prediction
-dog : 91.274193%
+pothole : 91.274185%
 
 
 TOP 5 Predictions
-dog : 0.912742%
-bird : 0.0856047%
-fish : 0.00106978%
-cat : 0.000507325%
-reptile : 7.00301e-05%
+pothole : 91.274185%
+shadow : 8.560489%
+patch : 0.106978%
+patchdamaged : 0.050732%
+paintasphalt : 0.007003%
 
-Classification Time : 11ms
+Classification Time : 10ms
 ```
