@@ -22,7 +22,7 @@ std::string label = "CaffeModel/labels.txt";
 ```
  - Check Project Properties and make sure all dependencies paths (TensorRT, CUDA, OpenCV) are correct
  - Build the solution on Release mode and run
- - The first time you running this program, it will take some time to build the CUDA engine, and the engine will be saved as **ClassificationTRT.engine**. The next time you run the program, it will load the created engine in a short time.
+ - The first time you run this program, it will take some time to build the CUDA engine, and the engine will be saved as **ClassificationTRT.engine**. The next time you run the program, it will load the created engine in a short time.
 
 # Result
 ```
