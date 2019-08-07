@@ -24,6 +24,10 @@ std::string label = "CaffeModel/labels.txt";
  - Build the solution on Release mode and run
  - The first time you run this program, it will take some time to build the CUDA engine, and the engine will be saved as **ClassificationTRT.engine**. The next time you run the program, it will load the created engine in a short time.
 
+Notes
+ - If `fopen` related error occurs, Modify 
+ `Configuration Properties -> C/C++ -> Preprocessor` in the field `PreprocessorDefinitions` add `;_CRT_SECURE_NO_WARNINGS`
+
 # Result
 ```
 Finding CUDA Device
