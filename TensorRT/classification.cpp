@@ -41,6 +41,8 @@ public:
 	InferenceEngine(const string& model_file,
 		const string& trained_file);
 
+	ICudaEngine* deSerializeEngine(const std::string& engineFile);
+
 	~InferenceEngine();
 
 	ICudaEngine* Get() const
@@ -75,8 +77,24 @@ InferenceEngine::InferenceEngine(const string& model_file,
 	builder->setMaxBatchSize(1);
 	builder->setMaxWorkspaceSize(10 << 20);
 
-	std::cout << "Building Cuda Engine" << std::endl;
-	engine_ = builder->buildCudaEngine(*network);
+	std::string engineName = "ClassificationTRT.engine";
+	if (FILE *file = fopen((engineName).c_str(), "r")) {
+		std::cout << "Loading " <<engineName<< std::endl;
+		///Load Engine if already created
+		engine_ = deSerializeEngine(engineName);
+	}
+	else {
+		std::cout << "Building Cuda Engine" << std::endl;
+		engine_ = builder->buildCudaEngine(*network);
+		//CHECK(engine_) << "Failed to create inference engine.";
+		///Save created Engine
+		IHostMemory *serializedModel = engine_->serialize();
+		std::ofstream p(engineName, std::ios::binary);
+		p.write((const char*)serializedModel->data(), serializedModel->size());
+		p.close();
+		std::cout << "Save Engine as "<< engineName << std::endl;
+	}
+
 	//CHECK(engine_) << "Failed to create inference engine.";
 
 	network->destroy();
@@ -86,6 +104,33 @@ InferenceEngine::InferenceEngine(const string& model_file,
 InferenceEngine::~InferenceEngine()
 {
 	engine_->destroy();
+}
+
+ICudaEngine* InferenceEngine::deSerializeEngine(const std::string& engineFile)
+{
+	std::fstream file;
+	ICudaEngine* engine;
+
+	file.open(engineFile, std::ios::binary | std::ios::in);
+	if (!file.is_open())
+	{
+		fprintf(stdout, "_#_DET_#_L_#_Failed to load TRT engine\n");
+		std::fflush(stdout);
+	}
+	file.seekg(0, std::ios::end);
+	int length = file.tellg();
+	file.seekg(0, std::ios::beg);
+	std::unique_ptr<char[]> data(new char[length]);
+	file.read(data.get(), length);
+
+	file.close();
+
+	IRuntime* runTime;
+	runTime = createInferRuntime(gLogger);
+	//assert(runTime != nullptr);
+	engine = runTime->deserializeCudaEngine(data.get(), length, nullptr);
+	//assert(mTrtEngine != nullptr);
+	return engine;
 }
 
 class Classifier
@@ -463,7 +508,7 @@ const char* ClassificationTensorRT::classifier_classify(classifier_ctx* ctx, cv:
 		for (size_t i = 0; i < predictions.size(); ++i)
 		{
 			Prediction p = predictions[i];
-			std::cout << p.first << " : " << p.second << "%\n";
+			std::cout << p.first << " : " << std::to_string(p.second * 100) << "%\n";
 		}
 		std::cout << std::endl;
 		errno = 0;
